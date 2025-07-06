@@ -1,5 +1,5 @@
 import com.example.Lion;
-import com.example.Predator;
+import com.example.Feline;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,9 +7,10 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
-import org.mockito.Mockito;
+
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 
 @RunWith(Parameterized.class)
 public class LionParameterizedTest {
@@ -22,7 +23,8 @@ public class LionParameterizedTest {
         this.expectedHasMane = expectedHasMane;
     }
 
-    @Parameterized.Parameters
+
+    @Parameterized.Parameters(name = "Пол: {0}, Ожидаемое значение doesHaveMane: {1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {"Самец", true},
@@ -31,9 +33,9 @@ public class LionParameterizedTest {
     }
 
     @Test
-    public void testHasMane() throws Exception {
-        Predator mockPredator = Mockito.mock(Predator.class);
-        Lion lion = new Lion(sex, mockPredator);
-        assertEquals(expectedHasMane, lion.hasMane());
+    public void testDoesHaveMane_ReturnsExpectedValue() throws Exception {
+        Feline mockFeline = mock(Feline.class);
+        Lion lion = new Lion(sex, mockFeline);
+        assertEquals(expectedHasMane, lion.doesHaveMane());
     }
 }
