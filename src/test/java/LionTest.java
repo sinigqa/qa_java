@@ -27,38 +27,38 @@ public class LionTest {
     }
 
     @Test
-    public void testGetFood_ReturnsCorrectFoodList() throws Exception {
+    public void testGetFoodReturnsCorrectFoodList() throws Exception {
         when(mockFeline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> food = lionMale.getFood();
         assertEquals(List.of("Животные", "Птицы", "Рыба"), food);
     }
 
     @Test
-    public void testGetFood_CallsGetFoodOnce() throws Exception {
+    public void testGetFoodCallsGetFoodOnce() throws Exception {
         when(mockFeline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         lionMale.getFood();
         verify(mockFeline, times(1)).getFood("Хищник");
     }
 
     @Test
-    public void testGetKittens_ReturnsDefaultCountOfOne() throws Exception {
+    public void testGetKittensReturnsDefaultCountOfOne() throws Exception {
         when(mockFeline.getKittens()).thenReturn(1);
         int kittens = lionMale.getKittens();
         assertEquals(1, kittens);
     }
 
     @Test
-    public void testDoesHaveMane_Male_ReturnsTrue() {
+    public void testDoesHaveManeMaleReturnsTrue() {
         assertTrue(lionMale.doesHaveMane());
     }
 
     @Test
-    public void testDoesHaveMane_Female_ReturnsFalse() {
+    public void testDoesHaveManeFemaleReturnsFalse() {
         assertFalse(lionFemale.doesHaveMane());
     }
 
     @Test(expected = Exception.class)
-    public void testInvalidSex_ThrowsException() throws Exception {
+    public void testInvalidSexThrowsException() throws Exception {
         new Lion("Неизвестный", mockFeline);
     }
 }

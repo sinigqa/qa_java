@@ -23,19 +23,19 @@ public class CatTest {
     }
 
     @Test
-    public void testSound_ReturnsMew() {
+    public void testSoundReturnsMew() {
         assertEquals("Мяу", cat.getSound());
     }
 
     @Test
-    public void testGetFood_ReturnsCorrectFoodList() throws Exception {
+    public void testGetFoodReturnsCorrectFoodList() throws Exception {
         when(mockFeline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> food = cat.getFood();
         assertEquals(List.of("Животные", "Птицы", "Рыба"), food);
     }
 
     @Test
-    public void testGetFood_CallsEatMeatOnce() throws Exception {
+    public void testGetFoodCallsEatMeatOnce() throws Exception {
         when(mockFeline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         cat.getFood();
         verify(mockFeline, times(1)).eatMeat();
